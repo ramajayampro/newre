@@ -1,0 +1,95 @@
+<div class="form-group col-lg-2">
+    <label for="assignee">State</label>
+    <select class="form-control" id="assignee">
+        <option selected>Assignee</option>
+        <option>Ramajayam</option>
+        <option>Arul Murugan</option>
+    </select>
+</div>
+
+
+<input type="date" class="form-control col-lg-1" id="date" value="{{placement.date|date:"Y-m-d" }}">
+
+
+
+{% extends 'base.html' %}
+
+{% block title %}
+<title> Edit Task </title>
+{% endblock title %}
+</br>
+
+{% block content %}
+</br>
+    <div class="container">
+    </br>
+            <form method="POST" class="row">
+                {% csrf_token %}
+                <label class="col-lg-1"></label>   
+                <input type="text" class="form-control col-lg-2" name="clientname" placeholder="{{ task_obj.clientname }}" value = "{{ task_obj.clientname }}" >
+                <input type="text" class="form-control col-lg-2" name="task" placeholder="{{ task_obj.task }}" value = "{{ task_obj.task }}" >
+                <input date="date" class="form-control col-lg-2" name="startdate" value = "{{placement.date|date:"Y-m-d" }}" >
+                <input date="date" class="form-control col-lg-2" name="enddate" value = "{{placement.date|date:"Y-m-d" }}" >
+                <input type="text" class="form-control col-lg-2" name="messagelogs" placeholder="{{ task_obj.messagelogs }}" value = "{{ task_obj.messagelogs }}" >
+                <input type="text"  name="assignee" value = "{{ task_obj.assignee }}" >
+                <input type="text"  name="fstatus" value = "{{ task_obj.fstatus }}" >
+                <label class="col-lg-1"></label> 
+                <button type="submit" class="btn btn-primary col-lg-2">Update Task</button>
+            </form>
+            </br>
+    </div>
+{% endblock content %}
+
+
+<td><a href="{% url 'edit_task' obj.id %}">Edit</a></td>
+
+
+<input type="text" class="form-control col-lg-4" name="messagelogs" value = "{{ task_obj.messagelogs }}">
+
+
+
+</div>
+  <div class="form-group col-lg-4" >
+    <label for="messagelogs">Notes</label>
+    <textarea class="form-control" id="messagelogs" name="enddate" rows="3"> {{ task_obj.messagelogs }}</textarea>
+  </div>
+
+
+   </div>
+   <div class="form-group col-lg-4" >
+     <label for="messagelogs">Notes</label>
+     <textarea class="form-control" id="messagelogs"  rows="3"> {{ task_obj.messagelogs }}</textarea>
+   </div>
+ </form> 
+
+
+ class DateForm(forms.Form):
+    date = forms.DateTimeField(
+        input_formats=['%d/%m/%Y %H:%M'],
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control datetimepicker-input',
+            'data-target': '#datetimepicker1'
+        })
+    )
+
+
+
+
+                        <div class="form-row field-messagelogs">
+                        <div>
+
+                        <label for="id_messagelogs">Messagelogs:</label>
+                        <textarea name="messagelogs" cols="40" rows="10" class="vLargeTextField" id="id_messagelogs"></textarea></div>
+            
+                         </div>  
+
+
+                         <tr class="table-success"</tr>
+    <td><a href="{% url 'edit_task' obj.id %}">{{ obj.id  }} | {{ obj.clientname  }}</a></td>
+    <td>{{ obj.task  }} | <a href="{% url 'view_task' obj.id %}">  View Message Logs</a> </td>
+    <td>{{ obj.startdate  }}</td>
+    <td>{{ obj.enddate  }}</td>
+    <td>{{ obj.assignee  }}</td>
+    <td>{{ obj.status  }}</td>
+    <td> Completed </td>
+</tr>             
